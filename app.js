@@ -13,6 +13,9 @@ seedDB();
 //coments
 var Comment = require("./models/comment");
 
+//css folder
+app.use(express.static(__dirname + "/public"));
+
 
 
 app.get("/", function(req, res){
