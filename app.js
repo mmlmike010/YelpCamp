@@ -25,7 +25,7 @@ var indexRoutes = require("./routes/index");
 //css folder
 app.use(express.static(__dirname + "/public"));
 
-//PASSPORT configuration
+//PASSPORT configuration set
 app.use(require("express-session")({
     secret: "Once again Rusty wins cutest dog!",
     resave: false,
