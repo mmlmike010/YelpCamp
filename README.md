@@ -6,7 +6,7 @@ Utilizes Node.JS, Express.JS, MongoDB, Bootstrap
 **
 APP DESCRIPTION:
 
-Browse through various campgrounds stored within the database to find your next destination!
+Browse through various campgrounds stored within our database to find your next destination! Went somewhere special that's not listed within our database? Sign-up and add a new campground to our directory for other users to browse and comment!
 
 **
 Details:
