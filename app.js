@@ -9,18 +9,24 @@ var Campground = require("./models/campground");
 mongoose.connect("mongodb://localhost/yelp_camp");
 //require seeds file
 var seedDB = require("./seeds");
-seedDB();
+//seedDB(); //seed the database
 //coments
 var Comment = require("./models/comment");
 //authentication
 var passport = require("passport"),
     LocalStrategy = require("passport-local"),
     User = require("./models/user");
+    
+//method override for put method
+var methodOverride = require("method-override");
 
 //REQUIRING ROUTES
 var commentRoutes = require("./routes/comments");
 var campgroundRoutes = require("./routes/campgrounds");
 var indexRoutes = require("./routes/index");
+
+//method override for put method
+app.use(methodOverride("_method"));
 
 //css folder
 app.use(express.static(__dirname + "/public"));
