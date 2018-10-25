@@ -11,8 +11,17 @@ middlewareObj.checkCampgroundOwnership = function(req,res,next){
             
             Campground.findById(req.params.id, function(err, foundCampground){
                 if(err){
+                    req.flash("error", "Campground not found");
                     res.redirect("back");
                 } else{
+
+                    // If foundCampground exists, and if it doesn't to throw an error via connect-flash and send us back to the homepage
+                    if (!foundCampground) {
+                            req.flash("error", "Item not found.");
+                            return res.redirect("back");
+                    }
+                    // If the upper condition is true this will break out of the middleware and prevent the code below to crash our application
+                   
                     //does user own the campground?
                     //NOTE: foundCampground.author.id is a mongoose object, and req.user._id is a string
                     //use mongoose equals function
@@ -21,6 +30,7 @@ middlewareObj.checkCampgroundOwnership = function(req,res,next){
                         next();
                     }
                     else{
+                        req.flash("error", "You don't have permission to do that!");
                         res.redirect("back");
                     }
                 }
@@ -28,6 +38,7 @@ middlewareObj.checkCampgroundOwnership = function(req,res,next){
         } 
         
         else{
+            req.flash("error", "You need to be logged in to do that!");
             res.redirect("back");
         }
 }
@@ -42,6 +53,13 @@ middlewareObj.checkCommentOwnership = function(req,res,next){
                 if(err){
                     res.redirect("back");
                 } else{
+                    
+                    // Added this block, to check if foundCampground exists, and if it doesn't to throw an error via connect-flash and send us back to the homepage
+                    if (!foundComment) {
+                            req.flash("error", "Item not found.");
+                            return res.redirect("back");
+                    }                    
+                    
                     //does user own the comment?
                     //NOTE: foundComment.author.id is a mongoose object, and req.user._id is a string
                     //use mongoose equals function
@@ -50,6 +68,7 @@ middlewareObj.checkCommentOwnership = function(req,res,next){
                         next();
                     }
                     else{
+                        req.flash("error", "You don't have permission to do that");
                         res.redirect("back");
                     }
                 }
@@ -58,6 +77,7 @@ middlewareObj.checkCommentOwnership = function(req,res,next){
         
         else{
             res.redirect("back");
+            req.flash("error", "You need to be logged in to do that");
         }
 }
         
@@ -66,7 +86,7 @@ middlewareObj.isLoggedIn = function(req,res,next){
     if(req.isAuthenticated()){
         return next();
     }
-    req.flash("error", "Please Login First!");
+    req.flash("error", "You need to be logged in to do that");
     res.redirect("/login");
 }
 
