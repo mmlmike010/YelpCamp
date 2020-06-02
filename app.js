@@ -11,13 +11,14 @@ mongoose.connect("mongodb://localhost/yelp_camp");
 
 //seedDB(); //seed the database
 var seedDB = require("./seeds");
-//coments
+//comments
 var Comment = require("./models/comment");
 
 //authentication
 var passport = require("passport"),
     LocalStrategy = require("passport-local"),
     User = require("./models/user");
+    
     
 //method override for put method
 var methodOverride = require("method-override");
