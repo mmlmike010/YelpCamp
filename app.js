@@ -8,10 +8,12 @@ var mongoose = require("mongoose");
 var Campground = require("./models/campground");
 mongoose.connect("mongodb://localhost/yelp_camp");
 //require seeds file
-var seedDB = require("./seeds");
+
 //seedDB(); //seed the database
+var seedDB = require("./seeds");
 //coments
 var Comment = require("./models/comment");
+
 //authentication
 var passport = require("passport"),
     LocalStrategy = require("passport-local"),
@@ -51,7 +53,7 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-//middleware for current user as shown in the app.get for campgrounds
+// middleware for current user 
 app.use(function(req,res,next){
     res.locals.currentUser = req.user;
     res.locals.error = req.flash("error");
