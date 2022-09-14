@@ -1,0 +1,25 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: YelpCamp
+  description: Service that powers the camp searching app
+  tags:
+    - javascript
+    - YelpCamp
+  links:
+    - url: https://github.com
+      title: Github
+      icon: github
+    - url: https://datadog.com
+      title: Datadog
+      icon: datadog
+    - url: https://pagerduty.com
+      title: PagerDuty
+      icon: pagerduty
+    - url: https://honeycomb.io
+      title: Honeycomb
+      icon: honeycomb
+spec:
+  type: service
+  lifecycle: staging
+  owner: platform
