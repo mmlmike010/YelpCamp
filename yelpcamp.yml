@@ -1,6 +1,9 @@
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
+  annotations:
+    backstage.io/source-location: url:https://github.com/mmlmike010/YelpCamp
+    backstage.io/techdocs-ref: dir:.
   name: YelpCamp
   description: Service that powers the camp searching app
   tags:
